@@ -1,8 +1,6 @@
 <?php
+
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\ReligionController;
-use App\Models\Employee;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,24 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/register', [LoginController::class, 'register'])->name('register');
-Route::post('/postRegister', [LoginController::class, 'postRegister'])->name('postRegister');
-Route::get('/login', [LoginController::class, 'login'])->name('login');
-Route::post('/postLogin', [LoginController::class, 'postLogin'])->name('postLogin');
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
+Route::get('/dashboard', function () {
+    return view('home');
+})->middleware(['auth'])->name('dashboard');
 Route::group(['middleware' => ['auth']], function (){
-    Route::get('/', function () {
-        $jumlahPegawai = Employee::count();
-        $jumlahPegawaiLakilaki = Employee::where('jenisKelamin', 'Laki - Laki')->count();
-        $jumlahPegawaiPerempuan = Employee::where('jenisKelamin', 'Perempuan')->count();
-        return view('home', compact('jumlahPegawai','jumlahPegawaiLakilaki','jumlahPegawaiPerempuan'));
-    });
-
 Route::get('/pegawai', [EmployeeController::class, 'index'])->name('pegawai');
 Route::get('/tambahPegawai', [EmployeeController::class, 'tambahPegawai'])->name('tambahPegawai');
 Route::post('/prosesData', [EmployeeController::class, 'prosesData'])->name('prosesData');
@@ -51,3 +39,4 @@ Route::post('/importExcel', [EmployeeController::class, 'importExcel'])->name('i
 Route::resource('religion', ReligionController::class);
 Route::get('/delete1/{id}', [ReligionController::class, 'delete'])->name('delete');
 });
+require __DIR__.'/auth.php';

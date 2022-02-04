@@ -31,26 +31,26 @@ class EmployeeController extends Controller
     }
     public function tambahPegawai()
     {
-        $dataagama = Religion::all();
-        // $data = Employee::all();
-        return view('Employee.tambahData', compact('dataagama')) ;
+        $data = Employee::all();
+        return view('Employee.tambahData', compact('data'));
     }
     public function prosesData(Request $request)
     {
         // dd($request->all());
-        $this->validate( $request, [
-            'nama' => 'required|min:5|max:20',
-            'jenisKelamin' => 'required',
-            'notelpon' => 'required|min:11|max:12',
-            'foto' => 'required',
-        ],
-        [
-            'nama.required' => 'Nama tidak boleh kosong',
-            'jenisKelamin.required' => 'Jenis Kelamin tidak boleh kosong',
-            'notelpon.required' => 'No Telepon tidak boleh kosong',
-            'foto.required' => 'Foto tidak boleh kosong',
-        ]);
+        // $this->validate( $request, [
+        //     'nama' => 'required|min:5|max:20',
+        //     'jenisKelamin' => 'required',
+        //     'notelpon' => 'required|min:11|max:12',
+        //     'foto' => 'required',
+        // ],
+        // [
+        //     'nama.required' => 'Nama tidak boleh kosong',
+        //     'jenisKelamin.required' => 'Jenis Kelamin tidak boleh kosong',
+        //     'notelpon.required' => 'No Telepon tidak boleh kosong',
+        //     'foto.required' => 'Foto tidak boleh kosong',
+        // ]);
         $data = Employee::create($request->all());
+        // tambah foto
         if($request->hasFile('foto')){
             $request->file('foto')->move('fotoPegawai/', $request->file('foto')->getClientOriginalName());
             $data->foto = $request->file('foto')->getClientOriginalName();
@@ -60,23 +60,22 @@ class EmployeeController extends Controller
     }
     public function editData($id)
     {
-        $dataagama = Religion::all();
         $data = Employee::find($id);
         // return $data;
-        return view('Employee.edit', compact('data', 'dataagama'));
+        return view('Employee.edit', compact('data'));
     }
     public function prosesEdit(Request $request, $id)
     {
-        $validated = $request->validate([
-            'nama' => 'required|min:2',
-            'jenisKelamin' => 'required',
-            'notelpon' => 'required',
-        ],
-        [
-            'nama.required' => 'Nama tidak boleh kosong',
-            'jenisKelamin.required' => 'Jenis Kelamin tidak boleh kosong',
-            'notelpon.required' => 'No Telepon tidak boleh kosong',
-        ]);
+        // $validated = $request->validate([
+        //     'nama' => 'required|min:2',
+        //     'jenisKelamin' => 'required',
+        //     'notelpon' => 'required',
+        // ],
+        // [
+        //     'nama.required' => 'Nama tidak boleh kosong',
+        //     'jenisKelamin.required' => 'Jenis Kelamin tidak boleh kosong',
+        //     'notelpon.required' => 'No Telepon tidak boleh kosong',
+        // ]);
         $data = Employee::find($id);
         $data->update($request->all());
         if(Session('halaman_url')){

@@ -32,11 +32,17 @@
 
 <table id="customers">
     <tr>
-        <th scope="col">NO</th>
-        <th scope="col">Nama</th>
-        <th scope="col">Jenis Kelamin</th>
-        <th scope="col">No Telphon</th>
-        <th scope="col">Dibuat</th>
+      <th scope="col">NO</th>
+      <th scope="col">Foto</th>
+      <th scope="col">Nama</th>
+      <th scope="col">NIP</th>
+      <th scope="col">Tanggal Lahir</th>
+      <th scope="col">Alamat</th>
+      <th scope="col">Jenis Kelamin</th>
+      <th scope="col">Email</th>
+      <th scope="col">No Telphon</th>
+      <th scope="col">Kendaraan</th>
+      <th scope="col">Plat Nomor</th>
     </tr>
 
       @php
@@ -46,9 +52,14 @@
       <tr>
       <th scope="row">{{ $no++}}</th>
       <td>{{ $row->nama}}</td>
-      <td>{{ $row->jenisKelamin}}</td>
-      <td>0{{ $row->notelpon}}</td>
-      <td>{{ $row->created_at->format('D M Y')}}</td>
+      <td>{{ $row->nip}}</td>
+      <td>{{ $row->tanggal}}</td>
+      <td>{{ $row->alamat}}</td>
+      <td>{{ $row->jeniskelamin}}</td>
+      <td>{{ $row->email}}</td>
+      <td>0{{ $row->no_hp}}</td>
+      <td>{{ $row->kendaraan}}</td>
+      <td>{{ $row->plat}}</td>
     </tr>
       @endforeach
 

@@ -15,10 +15,16 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->enum('jenisKelamin', ['Laki - Laki', 'Perempuan']);
-            $table->bigInteger('notelpon');
             $table->string('foto');
+            $table->string('nama');
+            $table->bigInteger('nip');
+            $table->date('tanggal');
+            $table->string('alamat');
+            $table->enum('jeniskelamin',['laki-laki','perempuan']);
+            $table->string('email');
+            $table->bigInteger('no_hp');
+            $table->string('kendaraan');
+            $table->string('plat');
             $table->timestamps();
         });
     }

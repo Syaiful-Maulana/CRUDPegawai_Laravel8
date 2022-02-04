@@ -19,6 +19,8 @@ class EmployeeImport implements ToModel
             'jenisKelamin' => $row[2],
             'notelpon' => $row[3],
             'foto' => $row[4],
+            'id_religions' => $row[5],
+            'tanggal_lahir' => $row[6],
 
         ]);
         

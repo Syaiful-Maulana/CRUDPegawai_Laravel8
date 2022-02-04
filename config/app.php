@@ -162,7 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         /*
          * Package Service Providers...
          */

@@ -12,9 +12,17 @@ class Employee extends Model
 
     protected $guarded=[];
     protected $dates=['created_at'];
+    protected $fillable = [
+        'nama',
+        'nip',
+        'alamat',
+        'tanggal',
+        'jeniskelamin',
+        'email',
+        'no_hp',
+        'kendaraan',
+        'foto',
+        'plat'
+    ];
 
-    public function religion()
-    {
-        return $this->belongsTo(Religion::class, 'id_religions', 'id');
-    }
 }

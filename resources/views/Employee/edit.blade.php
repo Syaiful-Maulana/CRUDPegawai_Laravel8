@@ -6,24 +6,21 @@
 @section('title', 'pegawai')
 
 @section('content')
-<div class="content-wrapper">
-  <!-- Content Header (Page header) -->
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2" >
-        <div class="col-sm-6">
-          <h1 class="m-0">Data Pegawai</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ url('/')}}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('pegawai')}}">Data Pegawai</a></li>
-            <li class="breadcrumb-item active">Edit</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<div class="page-title-area">
+  <div class="row align-items-center">
+      <div class="col-sm-12 mb-3 mt-3">
+          <div class="breadcrumbs-area clearfix">
+              <h4 class="page-title pull-left">Tambah Data Pegawai</h4>
+              <ul class="breadcrumbs pull-right">
+                  <li><a href="{{ url('dashboard')}}">Dashboard</a></li>
+                  <li><a href="{{ url('pegawai')}}">Data Pegawai</a></li>
+                  <li class="breadcrumb-item active">Tambah Data</li>
+              </ul>
+          </div>
+      </div>
   </div>
+</div>
+<div class="content-wrapper">
   <div class="row justify-content-center">
     <div class="col-8">
         <div class="card">
@@ -37,6 +34,14 @@
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
+                    <div class="mb-3">
+                      <label  class="form-label">NIP</label>
+                      <input type="text" name="nip" class="form-control @error('nip') is-invalid @enderror" value="{{ $data->nip}}">
+                      @error('nip')
+                      <div class="invalid-feedback">{{ $message }}</div>
+                      @enderror
+                    </div>
+
                     <div class="mb-3">
                       <label class="form-label">Jenis Kelamin</label>
                       <select name="jenisKelamin" class="form-control @error('jenisKelamin') is-invalid @enderror"  aria-label="Default select example">
@@ -55,19 +60,6 @@
                       <label class="form-label">No Telephon</label>
                       <input type="number" name="notelpon" class="form-control @error('notelpon') is-invalid @enderror"  value="{{ $data->notelpon}}">
                       @error('notelpon')
-                      <div class="invalid-feedback">{{ $message }}</div>
-                      @enderror
-                    </div>
-                    <div class="mb-3">
-                      <label class="form-label">Agama</label>
-                      <select class="form-select @error('id_religions') is-invalid @enderror" name="id_religions" aria-label="Default select example">
-                        <option selected>{{ $data->religion->nama}}</option>
-                        @foreach ($dataagama as $data)
-                        <option value="{{ $data->id}}">{{ $data->nama}}</option>
-                        @endforeach
-                      </select>
-                      </option>
-                      @error('jenisKelamin')
                       <div class="invalid-feedback">{{ $message }}</div>
                       @enderror
                     </div>
